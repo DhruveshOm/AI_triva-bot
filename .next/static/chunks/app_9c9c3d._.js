@@ -249,21 +249,23 @@ var _s = __turbopack_refresh__.signature();
 ;
 ;
 ;
-function TemplteListSection({ userSearchInput }) {
+// Type assertion for the imported Templates
+const typedTemplates = __TURBOPACK__imported__module__$5b$project$5d2f$app$2f28$data$292f$Templates$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+function TemplateListSection({ userSearchInput }) {
     _s();
-    const [templateList, setTemplateList] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f28$data$292f$Templates$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]);
+    const [templateList, setTemplateList] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(typedTemplates);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "TemplteListSection.useEffect": ()=>{
+        "TemplateListSection.useEffect": ()=>{
             if (userSearchInput) {
-                const filterData = __TURBOPACK__imported__module__$5b$project$5d2f$app$2f28$data$292f$Templates$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].filter({
-                    "TemplteListSection.useEffect.filterData": (item)=>item.name.toLowerCase().includes(userSearchInput.toLowerCase())
-                }["TemplteListSection.useEffect.filterData"]);
+                const filterData = typedTemplates.filter({
+                    "TemplateListSection.useEffect.filterData": (item)=>item.name.toLowerCase().includes(userSearchInput.toLowerCase())
+                }["TemplateListSection.useEffect.filterData"]);
                 setTemplateList(filterData);
             } else {
-                setTemplateList(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f28$data$292f$Templates$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]);
+                setTemplateList(typedTemplates);
             }
         }
-    }["TemplteListSection.useEffect"], [
+    }["TemplateListSection.useEffect"], [
         userSearchInput
     ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -272,20 +274,20 @@ function TemplteListSection({ userSearchInput }) {
                 ...item
             }, item.slug || index, false, {
                 fileName: "[project]/app/dashboard/_components/TemplateListSection.tsx",
-                lineNumber: 40,
-                columnNumber: 13
+                lineNumber: 46,
+                columnNumber: 17
             }, this))
     }, void 0, false, {
         fileName: "[project]/app/dashboard/_components/TemplateListSection.tsx",
-        lineNumber: 38,
-        columnNumber: 5
+        lineNumber: 44,
+        columnNumber: 9
     }, this);
 }
-_s(TemplteListSection, "lG6yXK0Ux0LSG+2EmgHAaNBq6hg=");
-_c = TemplteListSection;
-const __TURBOPACK__default__export__ = TemplteListSection;
+_s(TemplateListSection, "oWh1EQNbvGNYDynani8dKpAeFTc=");
+_c = TemplateListSection;
+const __TURBOPACK__default__export__ = TemplateListSection;
 var _c;
-__turbopack_refresh__.register(_c, "TemplteListSection");
+__turbopack_refresh__.register(_c, "TemplateListSection");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_refresh__.registerExports(module, globalThis.$RefreshHelpers$);
 }

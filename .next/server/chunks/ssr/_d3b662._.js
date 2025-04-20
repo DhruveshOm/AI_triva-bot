@@ -233,14 +233,16 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$_compone
 ;
 ;
 ;
-function TemplteListSection({ userSearchInput }) {
-    const [templateList, setTemplateList] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f28$data$292f$Templates$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"]);
+// Type assertion for the imported Templates
+const typedTemplates = __TURBOPACK__imported__module__$5b$project$5d2f$app$2f28$data$292f$Templates$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"];
+function TemplateListSection({ userSearchInput }) {
+    const [templateList, setTemplateList] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(typedTemplates);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (userSearchInput) {
-            const filterData = __TURBOPACK__imported__module__$5b$project$5d2f$app$2f28$data$292f$Templates$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].filter((item)=>item.name.toLowerCase().includes(userSearchInput.toLowerCase()));
+            const filterData = typedTemplates.filter((item)=>item.name.toLowerCase().includes(userSearchInput.toLowerCase()));
             setTemplateList(filterData);
         } else {
-            setTemplateList(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f28$data$292f$Templates$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"]);
+            setTemplateList(typedTemplates);
         }
     }, [
         userSearchInput
@@ -251,16 +253,16 @@ function TemplteListSection({ userSearchInput }) {
                 ...item
             }, item.slug || index, false, {
                 fileName: "[project]/app/dashboard/_components/TemplateListSection.tsx",
-                lineNumber: 40,
-                columnNumber: 13
+                lineNumber: 46,
+                columnNumber: 17
             }, this))
     }, void 0, false, {
         fileName: "[project]/app/dashboard/_components/TemplateListSection.tsx",
-        lineNumber: 38,
-        columnNumber: 5
+        lineNumber: 44,
+        columnNumber: 9
     }, this);
 }
-const __TURBOPACK__default__export__ = TemplteListSection;
+const __TURBOPACK__default__export__ = TemplateListSection;
 }}),
 "[project]/app/dashboard/page.tsx [app-ssr] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
