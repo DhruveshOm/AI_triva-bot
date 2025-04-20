@@ -30,20 +30,27 @@ function CreateNewContent(props: PROPS) {
     const params = use(props.params)
     const slug = params['template-slug']
     
-    const selectedTemplate: TEMPLATE | undefined = Templates.find((item) => item.slug === slug)
+    // Type assertion for the Templates array
+    const typedTemplates = Templates as TEMPLATE[]
+    const selectedTemplate = typedTemplates.find((item) => item.slug === slug)
+    
     const [loading, setLoading] = useState(false)
     const [quizStarted, setQuizStarted] = useState(false)
     const [questions, setQuestions] = useState<Question[]>([])
     const [userAnswers, setUserAnswers] = useState<Record<number, string>>({})
     const [quizResult, setQuizResult] = useState<QuizResult | null>(null)
 
+    // Securely handle API key - should be stored in environment variables
     const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "AIzaSyAKLOkKi8UdFyKbP7a8cmjCnOZMlenPlco"
+    if (!apiKey) {
+        throw new Error("API key is not configured")
+    }
     const ai = new GoogleGenAI({ apiKey })
 
     const generateQuiz = async () => {
         setLoading(true)
         try {
-            const topic = selectedTemplate?.aiPrompt || "knowlegde base quize"
+            const topic = selectedTemplate?.aiPrompt || "knowledge base quiz"
             const prompt = `Generate a random trivia bot like quiz with 10 multiple choice questions about ${topic}. 
                 Return ONLY the raw JSON array without any markdown formatting or code blocks.
                 Each question object must have:
@@ -59,28 +66,32 @@ function CreateNewContent(props: PROPS) {
             })
 
             try {
-                // Clean the response text before parsing
-                let responseText = response.text;
+                // Ensure response.text exists and is a string
+                if (!response.text) {
+                    throw new Error("Empty response from API")
+                }
+
+                let responseText = response.text
                 
                 // Remove markdown code blocks if present
                 if (responseText.startsWith('```json')) {
-                    responseText = responseText.replace(/```json|```/g, '').trim();
+                    responseText = responseText.replace(/```json|```/g, '').trim()
                 }
                 
-                const quizData = JSON.parse(responseText);
+                const quizData = JSON.parse(responseText) as Question[]
                 
                 if (!Array.isArray(quizData)) {
-                    throw new Error("Invalid quiz format received");
+                    throw new Error("Invalid quiz format received")
                 }
                 setQuestions(quizData)
                 setQuizStarted(true)
             } catch (parseError) {
                 console.error("Failed to parse quiz data:", parseError, "Response:", response.text)
-                alert(`Failed to process the quiz questions. Please try again. Error: ${parseError.message}`)
+                alert(`Failed to process the quiz questions. Please try again. Error: ${(parseError as Error).message}`)
             }
         } catch (error) {
             console.error("Error generating quiz:", error)
-            alert("Failed to generate quiz. Please try again.")
+            alert(`Failed to generate quiz. Please try again. ${error instanceof Error ? error.message : ''}`)
         } finally {
             setLoading(false)
         }
@@ -104,7 +115,7 @@ function CreateNewContent(props: PROPS) {
                 {
                     "score": number (count of correct answers),
                     "total": number (total questions),
-                    "feedback": "string" (constructive feedback )
+                    "feedback": "string" (constructive feedback)
                 }
                 Ensure the response is valid JSON.`
 
@@ -114,14 +125,18 @@ function CreateNewContent(props: PROPS) {
             })
 
             try {
-                // Remove the parentheses from response.text
-                let responseText = response.text;
+                // Ensure response.text exists and is a string
+                if (!response.text) {
+                    throw new Error("Empty response from API")
+                }
+
+                let responseText = response.text
                 
                 // Remove markdown code blocks if present
                 if (responseText.startsWith('```json')) {
-                    responseText = responseText.replace(/```json|```/g, '').trim();
+                    responseText = responseText.replace(/```json|```/g, '').trim()
                 }
-                const result = JSON.parse(responseText)
+                const result = JSON.parse(responseText) as QuizResult
                 setQuizResult(result)
             } catch (parseError) {
                 console.error("Failed to parse quiz results:", parseError)
@@ -129,7 +144,7 @@ function CreateNewContent(props: PROPS) {
             }
         } catch (error) {
             console.error("Error evaluating quiz:", error)
-            alert("Failed to evaluate quiz. Please try again.")
+            alert(`Failed to evaluate quiz. Please try again. ${error instanceof Error ? error.message : ''}`)
         } finally {
             setLoading(false)
         }
