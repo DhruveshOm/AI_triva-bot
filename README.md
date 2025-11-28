@@ -37,9 +37,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 
 
-<!-- next js : chrome p esearch kr k m environment setup kiya h app k liye  -->
-<!-- shadcn to add components  : components add kr ne k liye ki code na likhna pade surwat se , jaise button add kiy h -->
-<!-- clerk for authentication: sign up , sign page banane k liye  -->
+<!-- next js : chrome p esearch kr k m environment setup kiya h app k liye   -->
+<!-- shadcn to add components  : components add kr ne k liye ki code na likhna pade surwat se , jaise button add kiy h   -->
+<!-- clerk for authentication: sign up , sign page banane k liye   -->
 
 <!-- Dashboard Layout: (left side me: navebar m Home ,history,billing,setting and total uses) 
  (header me : Logo , Search bar and offer)-->
