@@ -1,0 +1,93 @@
+.template-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.template-card {
+  position: relative;
+  padding: 28px 24px;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid rgba(139, 92, 246, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  min-height: 220px;
+}
+
+.template-card-glow {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+.template-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15),
+              0 8px 16px rgba(0, 0, 0, 0.05);
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+.template-card:hover .template-card-glow {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+.template-card-icon {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.template-card:hover .template-card-icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.template-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.3;
+}
+
+.template-card-desc {
+  font-size: 0.88rem;
+  color: #6b7280;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.template-card-arrow {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.35s ease;
+}
+
+.template-card:hover .template-card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
